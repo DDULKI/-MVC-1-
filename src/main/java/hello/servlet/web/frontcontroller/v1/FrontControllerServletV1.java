@@ -17,12 +17,12 @@ import java.util.Map;
 @WebServlet(name ="frontControllerServletV1", urlPatterns = "/front-controller/v1/*")
 public class FrontControllerServletV1 extends HttpServlet {
 
-    private Map<String, ControllerV1> controllerV1Map = new HashMap<>();
+    private Map<String, ControllerV1> controllerMap = new HashMap<>();
 
     public FrontControllerServletV1() {
-        controllerV1Map.put("/front-controller/v1/members/new-form", new MemberFormControllerV1());
-        controllerV1Map.put("/front-controller/v1/members/save", new MemberSaveControllerV1());
-        controllerV1Map.put("/front-controller/v1/members", new MemberListControllerV1());
+        controllerMap.put("/front-controller/v1/members/new-form", new MemberFormControllerV1());
+        controllerMap.put("/front-controller/v1/members/save", new MemberSaveControllerV1());
+        controllerMap.put("/front-controller/v1/members", new MemberListControllerV1());
     }
 
     @Override
@@ -31,7 +31,7 @@ public class FrontControllerServletV1 extends HttpServlet {
         // front-controller/v1/members
         String requestURl = request.getRequestURI();
 
-        ControllerV1 controller = controllerV1Map.get(requestURl);
+        ControllerV1 controller = controllerMap.get(requestURl);
         if(controller == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
